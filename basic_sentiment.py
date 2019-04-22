@@ -123,7 +123,7 @@ def frequencyAnalyse(polarised_tweets : Dict):
                 continue
             if word[0].lower() in stop_words:
                 continue
-            if word[1] in ['JJ', 'NN']:
+            if word[1] in ['JJ']:
                 if polarised_tweets[i][1] > 0.2:  #Positive
                     positive_words[word[0].lower()] = 1
                 elif polarised_tweets[i][1] < -0.2:  #Negative
@@ -137,7 +137,7 @@ def wordCloudGenerator(word_group : List, mask):
     wc = WordCloud(background_color="white", max_words=2000, mask=mask)
     clean_string = ','.join(word_group)
     wc.generate(clean_string)
-    f = plt.figure(figsize=(100, 100))
+    f = plt.figure(figsize=(200, 200))
     plt.imshow(wc, interpolation='bilinear')
     plt.axis("off")
     plt.show()

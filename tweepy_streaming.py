@@ -46,10 +46,8 @@ class OverriddenListener(StreamListener): #Class inherits the tweet gatherer
             return False
         print(status)
 
-hashtag_teams = {'#coyg' : 'afc2104.json',
-                 '#cpfc' : 'cpfc2104.json',
-                 '#bluebirds': 'cardiff2104.json',
-                 '#lfc': 'lfc2104.json'} #keyword s, LOWERCASE, Including hashtags
+hashtag_teams = {'#avfc' : 'avfc2204.json',
+                 '#millwall' : 'millwall2204.json'} #keyword s, LOWERCASE, Including hashtags
 
 twitter_streamer = TwitterStreamer()
 twitter_streamer.stream_tweets(hashtag_teams)
