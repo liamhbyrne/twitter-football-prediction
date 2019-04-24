@@ -10,7 +10,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk import RegexpTokenizer
 from wordcloud import WordCloud
-
+import tensorflow as tf
 
 def getSentiment(tweets : Dict):
     print("Getting sentiment...")
@@ -141,3 +141,17 @@ def wordCloudGenerator(word_group : List, mask):
     plt.imshow(wc, interpolation='bilinear')
     plt.axis("off")
     plt.show()
+
+def createModel(polarity : List, results: List):
+    pol = np.array(polarity)
+    gd = np.array(results)
+    tf.logging.set_verbosity(tf.logging.ERROR)
+    l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
+    model = tf.keras.Sequential([l0])
+    model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
+    model.fit(pol, gd, epochs=600, verbose=False)
+    return model
+
+def predictOutcome(model, match_polarity : float) -> float:
+    result = model.predict([match_polarity])
+    return result

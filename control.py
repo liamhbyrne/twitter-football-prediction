@@ -120,7 +120,7 @@ def correlation():
         averages.append(t._polarity)
     plotCorrelation(averages, results)
     #write to .csv
-    file = open('C:/Users/Liam/desktop/correlation.csv', 'w')
+    file = open('C:/Users/Liam/desktop/correlation.csv', 'a')
     for i in range(len(averages)):
         text = str(averages[i]) + ',' + str(results[i]) + '\n'
         file.write(text)
@@ -169,19 +169,24 @@ def wordCloud():
     wordCloudGenerator(words, mask)
 
 def regression():
-    pass
-    l0 = tf.keras.layers.Dense(units=1, input_shape=[1])
-    model = tf.keras.Sequential([l0])
-    model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
-    history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
-    model.predict([100.0])
+    polarity = []
+    results = []
+    with open('C:/Users/Liam/desktop/correlation.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            polarity.append(row[0])
+            results.append(row[1])
+    model = createModel(polarity, results)
+    prediction = predictOutcome(model, float(input("Enter the pre-match polarity:\n>>>")))
+    print(prediction)
 
 if '__name__' != '__main__':
     choice = input("AVERAGE            : '1'\n"
                    "GRAPH              : '2'\n"
                    "CORRELATE          : '3'\n"
-                   "FREQUENCY ANALYSIS : '4' (only 1 team)\n"
+                   "FREQUENCY ANALYSIS : '4'\n"
                    "WORDCLOUD          : '5'\n"
+                   "REGRESSION         : '6'\n"
                    ">>>")
     if choice == '1':
         average()
@@ -193,3 +198,5 @@ if '__name__' != '__main__':
         frequencyAnalysis()
     elif choice == '5':
         wordCloud()
+    elif choice == '6':
+        regression()
