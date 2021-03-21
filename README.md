@@ -3,7 +3,6 @@
 <div style="text-align:center"><img src="lfcwc.png" width="50%" /></div>  
 
 ## Report 
-Technical Report with Investigation:  
 [**Click Here for Full Report**](EPQ_FINAL.pdf)  
 
 ## Summary
