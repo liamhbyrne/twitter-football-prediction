@@ -1,4 +1,4 @@
-# twitter-football-prediction
+# Predicting Football Results with Twitter Sentiment Analysis
 
 <div style="text-align:center"><img src="lfcwc.png" width="50%" /></div>  
 
